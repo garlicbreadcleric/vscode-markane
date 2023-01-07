@@ -1,6 +1,7 @@
 {
   "name": "markane",
   "displayName": "Markane",
+  "repository": {"url": "https://github.com/garlicbreadcleric/vscode-markane"},
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -26,10 +27,6 @@
       {
         "title": "Markane: Re-index documents",
         "command": "markane.index"
-      },
-      {
-        "title": "Markane: Process currently opened document",
-        "command": "markane.process"
       }
     ],
     "configuration": {

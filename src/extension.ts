@@ -26,23 +26,12 @@ export function activate(context: ExtensionContext) {
 
 	const indexCmd = vscode.commands.registerCommand(`${clientId}.index`, async () => {
 		if (!client) return;
-		client.sendNotification("indexDocuments");
-	});
-
-	const processCmd = vscode.commands.registerCommand(`${clientId}.process`, async () => {
-		if (!client) return;
-
-		const editor = vscode.window.activeTextEditor;
-		if (editor == null) return;
-
-		await editor.document.save();
-		await client.sendNotification("processDocument", editor.document.uri.fsPath);
+		client.sendNotification("markane/indexDocuments");
 	});
 
 	context.subscriptions.push(restartCmd);
 	context.subscriptions.push(logCmd);
 	context.subscriptions.push(indexCmd);
-	context.subscriptions.push(processCmd);
 
 	startClient();
 }
@@ -75,6 +64,13 @@ async function startClient() {
 	);
 
 	await client.start();
+
+  client.onNotification("markane/showReferences", async ([uri, position, locations]) => {
+    await vscode.commands.executeCommand("editor.action.showReferences",
+      vscode.Uri.parse(uri),
+      new vscode.Position(position.line, position.character),
+      locations.map((l: any) => new vscode.Location(vscode.Uri.parse(l.uri), l.range)));
+  });
 }
 
 async function stopClient() {
