@@ -3,6 +3,7 @@
   "displayName": "Markane",
   "repository": {"url": "https://github.com/garlicbreadcleric/vscode-markane"},
   "description": "Arcane focus for Markdown spell-casting",
+  "publisher": "garlicbreadcleric",
   "icon": "icon.png",
   "version": "0.0.1",
   "engines": {
