@@ -1,9 +1,7 @@
-import * as path from 'path';
-import * as fs from 'fs';
+import { spawn } from "child_process";
+
 import * as vscode from 'vscode';
 import { workspace, ExtensionContext } from 'vscode';
-import * as yaml from 'yaml';
-
 import {
 	LanguageClient,
 	LanguageClientOptions,
@@ -13,7 +11,7 @@ import {
 let client: LanguageClient;
 const clientId = "markane";
 
-export function activate(context: ExtensionContext) {
+export async function activate(context: ExtensionContext) {
 	const restartCmd = vscode.commands.registerCommand(`${clientId}.restart`, async () => {
 		await stopClient();
 		startClient();
@@ -33,11 +31,35 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(logCmd);
 	context.subscriptions.push(indexCmd);
 
+  const supportedMarkaneVersions = new Set(["0.0.3"]);
+  const markaneVersion = await getMarkaneVersion();
+  if (markaneVersion == null) {
+    vscode.window.showErrorMessage("Markane is not installed.");
+    return;
+  }
+
+  if (!supportedMarkaneVersions.has(markaneVersion)) {
+    vscode.window.showErrorMessage(`Markane version ${markaneVersion} is not supported.`);
+    return;
+  }
+
 	startClient();
 }
 
 export async function deactivate(): Promise<void> {
 	await stopClient();
+}
+
+async function getMarkaneVersion(): Promise<string | null> {
+  const versionOutput: string | null = await new Promise((resolve, reject) => {
+    const child = spawn("markane", ["version"]);
+    let output = "";
+    child.stdout.on("data", (data) => { output += data; });
+    child.on("exit", (code) => { if (code === 0) { resolve(output); } else { resolve(null); } });
+    child.on("error", (err) => { resolve(null); });
+  });
+
+  return versionOutput?.trim() ?? null;
 }
 
 async function startClient() {
