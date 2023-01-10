@@ -2,11 +2,13 @@
   "name": "markane",
   "displayName": "Markane",
   "repository": {"url": "https://github.com/garlicbreadcleric/vscode-markane"},
-  "description": "",
+  "description": "Arcane focus for Markdown spell-casting",
+  "icon": "icon.png",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.71.0"
   },
+  "license": "MIT",
   "categories": [
     "Other"
   ],
@@ -28,36 +30,7 @@
         "title": "Markane: Re-index documents",
         "command": "markane.index"
       }
-    ],
-    "configuration": {
-      "type": "object",
-      "title": "Multi LSP configuration",
-      "properties": {
-        "lspMultiServerSample.enable": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "Controls the enablement."
-        },
-        "lspMultiServerSample.options": {
-          "scope": "resource",
-          "type": "object",
-          "default": {},
-          "description": "Additional options."
-        },
-        "lspMultiServerSample.trace.server": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "off",
-            "messages",
-            "verbose"
-          ],
-          "default": "off",
-          "description": "Traces the communication between VSCode and the language server."
-        }
-      }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
