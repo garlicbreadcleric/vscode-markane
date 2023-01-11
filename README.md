@@ -1,14 +1,93 @@
 # Markane for VS Code
 
-[VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=garlicbreadcleric.markane) |
+[VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=garlicbreadcleric.markane) |
 [Open VSX](https://open-vsx.org/extension/garlicbreadcleric/markane) |
 [GitHub](https://github.com/garlicbreadcleric/vscode-markane)
 
-A VS Code client for [Markane](https://github.com/garlicbreadcleric/markane) Markdown language server.
+_Arcane focus for Markdown spell-casting_
 
-Features:
+## Description
 
-- Auto-completion for notes, snippets and citations (triggered by `[`, `/` and `@` respectively)
-- Document and workspace tags (via `Go to Symbol in Editor` and `Go to Symbol in Workspace` VS Code commands)
-- Backlinks (via references and code lenses)
-- Creating new notes (via code actions on selections and citations)
+Markane is a command-line tool for taking Markdown notes and navigating between them. The preferred Markdown dialect is Pandoc Markdown, although you can use it with CommonMark if you don't use some Pandoc-related features. Markane features include:
+
+- Creating notes from Handlebars templates
+- Preview on hover (links, images, citations)
+- Auto-completion (links, citations, snippets)
+- Go-to-definition (links, citations)
+- Backlinks (links, citations)
+
+## Documentation
+
+- [Getting started](https://github.com/garlicbreadcleric/markane/blob/main/docs/getting-started.md)
+- [Editor integration](https://github.com/garlicbreadcleric/markane/blob/main/docs/editor-integration.md)
+- [Template examples](https://github.com/garlicbreadcleric/markane/blob/main/docs/template-examples.md)
+
+## Features
+
+### Auto-completion
+
+<details>
+<summary>Links</summary>
+
+![](assets/completion-link.gif)
+
+</details>
+
+<details>
+<summary>Citations</summary>
+
+![](assets/completion-citation.gif)
+
+</details>
+
+### Preview on hover
+
+<details>
+<summary>Links</summary>
+
+![](assets/preview-link.gif)
+
+</details>
+
+<details>
+<summary>Citations</summary>
+
+![](assets/preview-citation.gif)
+
+</details>
+
+### Go to definition
+
+<details>
+<summary>Links</summary>
+
+![](assets/definition-link.gif)
+
+</details>
+
+<details>
+<summary>Citations</summary>
+
+![](assets/definition-citation.gif)
+
+</details>
+
+### Backlinks
+
+<details>
+<summary>Links</summary>
+
+![](assets/reference-link.gif)
+
+</details>
+
+<details>
+<summary>Citations</summary>
+
+![](assets/reference-citation.gif)
+
+</details>
+
+## Similar projects
+
+- mickael-menu's [zk](https://github.com/mickael-menu/zk) — a similar tool with more focus on a powerful command-line interface and less focus on editor integration; supports `[[wiki-links]]` and has the ability to query notes from CLI.
