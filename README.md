@@ -1,5 +1,9 @@
 # Markane for VS Code
 
+[VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=garlicbreadcleric.markane) |
+[Open VSX](https://open-vsx.org/extension/garlicbreadcleric/markane) |
+[GitHub](https://github.com/garlicbreadcleric/vscode-markane)
+
 A VS Code client for [Markane](https://github.com/garlicbreadcleric/markane) Markdown language server.
 
 Features:
