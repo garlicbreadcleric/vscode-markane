@@ -31,7 +31,7 @@ export async function activate(context: ExtensionContext) {
 	context.subscriptions.push(logCmd);
 	context.subscriptions.push(indexCmd);
 
-  const supportedMarkaneVersions = new Set(["0.0.3"]);
+  const supportedMarkaneVersions = new Set(["0.0.3", "0.0.4", "0.0.5", "0.0.6"]);
   const markaneVersion = await getMarkaneVersion();
   if (markaneVersion == null) {
     vscode.window.showErrorMessage("Markane is not installed.");
@@ -89,6 +89,13 @@ async function startClient() {
 
   client.onNotification("markane/showReferences", async ([uri, position, locations]) => {
     await vscode.commands.executeCommand("editor.action.showReferences",
+      vscode.Uri.parse(uri),
+      new vscode.Position(position.line, position.character),
+      locations.map((l: any) => new vscode.Location(vscode.Uri.parse(l.uri), l.range)));
+  });
+
+  client.onNotification("markane/showMentions", async ([uri, position, locations]) => {
+    await vscode.commands.executeCommand("editor.action.peekLocations",
       vscode.Uri.parse(uri),
       new vscode.Position(position.line, position.character),
       locations.map((l: any) => new vscode.Location(vscode.Uri.parse(l.uri), l.range)));
