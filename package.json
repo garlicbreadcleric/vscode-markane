@@ -1,11 +1,13 @@
 {
   "name": "markane",
   "displayName": "Markane",
-  "repository": {"url": "https://github.com/garlicbreadcleric/vscode-markane"},
+  "repository": {
+    "url": "https://github.com/garlicbreadcleric/vscode-markane"
+  },
   "description": "Arcane focus for Markdown spell-casting",
   "publisher": "garlicbreadcleric",
   "icon": "icon.png",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.71.0"
   },
@@ -18,6 +20,28 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Markane",
+      "type": "object",
+      "properties": {
+        "markane.server.path": {
+          "type": "string",
+          "default": "markane",
+          "description": "Markane executable path."
+        },
+        "markane.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the language server."
+        }
+      }
+    },
     "commands": [
       {
         "title": "Markane: Restart language server",
